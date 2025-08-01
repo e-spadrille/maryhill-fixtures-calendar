@@ -2,37 +2,23 @@ name: Update Maryhill Fixtures Calendar
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # Runs every day at 6am UTC
-  workflow_dispatch:     # Manual run button
+    - cron: '0 6 * * *'  # Every day at 6am UTC
+  workflow_dispatch:     # Allows manual trigger
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-    - name: Install dependencies
-      run: pip install beautifulsoup4 requests icalendar
+      - name: Install dependencies
+        run: pip install beautifulsoup4 requests icalendar
 
-    - name: Run fixture scraper
-      run: python generate_ics.py
-
-    - name: Authenticate with GitHub
-      run: |
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-
-    - name: Commit updated calendar
-      run: |
-        git config user.name "github-actions"
-        git config user.email "actions@github.com"
-        git add maryhill-fixtures.ics fixtures.json || true
-        git commit -m "Auto-update calendar" || echo "No changes to commit"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run f
