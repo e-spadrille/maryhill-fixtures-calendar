@@ -17,7 +17,7 @@ for fixture in fixtures:
 
     event.add("summary", f'{fixture["home"]} vs {fixture["away"]}')
     event.add("dtstart", start_dt)
-    event.add("dtend", start_dt)  # Can be modified to add 2 hours if desired
+    event.add("dtend", start_dt)
     event.add("location", fixture["venue"])
     event.add("description", fixture["competition"])
 
