@@ -1,0 +1,33 @@
+name: Update Maryhill Fixtures Calendar
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Runs every day at 6am UTC
+  workflow_dispatch:     # Manual run button
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: pip install beautifulsoup4 requests
+
+    - name: Run fixture scraper
+      run: python generate_ics.py
+
+    - name: Commit updated calendar
+      run: |
+        git config user.name "github-actions"
+        git config user.email "actions@github.com"
+        git add maryhill-fixtures.ics fixtures.json
+        git commit -m "Auto-update calendar"
+        git push
+      continue-on-error: true
