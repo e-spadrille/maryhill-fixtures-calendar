@@ -1,58 +1,65 @@
 import requests
 from bs4 import BeautifulSoup
 import json
+from datetime import datetime
 
-BASE_URL = "https://www.wosfl.co.uk"
-PAGES = [
-    "/matchHub/922046009/-1_-1/853461137/-1/-1/-1/1/true.html",
-    "/matchHub/922046009/-1_-1/853461137/-1/-1/-1/1/true/2.html",
+# URLs to scrape
+urls = [
+    "https://www.wosfl.co.uk/matchHub/922046009/-1_-1/853461137/-1/-1/-1/1/true.html",
+    "https://www.wosfl.co.uk/matchHub/922046009/-1_-1/853461137/-1/-1/-1/1/true/2.html"
 ]
 
 fixtures = []
 
-headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-}
-
-for page in PAGES:
-    url = BASE_URL + page
-    response = requests.get(url, headers=headers)
+for url in urls:
+    response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
 
-    # Save page contents to help debug
-    with open("debug.html", "w") as f:
-        f.write(response.text)
+    match_rows = soup.select(".match-row")
 
-    rows = soup.select("div.matchHub__row")
+    for row in match_rows:
+        teams = row.select_one(".match-teams")
+        date_time = row.select_one(".match-date")
+        venue = row.select_one(".match-venue")
 
-    for row in rows:
+        if not (teams and date_time and venue):
+            continue
+
+        # Extract text cleanly
+        teams_text = teams.get_text(strip=True)
+        date_time_text = date_time.get_text(strip=True)
+        venue_text = venue.get_text(strip=True)
+
+        # Extract team names
+        if "v" in teams_text:
+            home_team, away_team = map(str.strip, teams_text.split("v"))
+        else:
+            continue  # skip malformed
+
+        # Parse date/time
         try:
-            date_time = row.select_one(".matchHub__datetime").get_text(strip=True).split()
-            date = date_time[0]
-            time = date_time[1] if len(date_time) > 1 else "14:00"
+            dt = datetime.strptime(date_time_text, "%d %b %Y, %H:%M")
+            iso_time = dt.isoformat()
+        except ValueError:
+            continue
 
-            teams = row.select(".matchHub__teamTitle")
-            if len(teams) != 2:
-                continue
-            home = teams[0].get_text(strip=True)
-            away = teams[1].get_text(strip=True)
+        # Extract competition and ground
+        if "@" in venue_text:
+            competition, ground = map(str.strip, venue_text.split("@", 1))
+        else:
+            competition = venue_text.strip()
+            ground = ""
 
-            competition = row.select_one(".matchHub__gameInfo").get_text(strip=True)
-            venue = row.select_one(".matchHub__gameInfo + div").get_text(strip=True).replace("@", "").strip()
+        fixtures.append({
+            "home_team": home_team,
+            "away_team": away_team,
+            "datetime": iso_time,
+            "competition": competition,
+            "ground": ground
+        })
 
-            fixtures.append({
-                "date": date,
-                "time": time,
-                "home": home,
-                "away": away,
-                "competition": competition,
-                "venue": venue
-            })
-        except Exception as e:
-            print("Skipping row due to error:", e)
-
-# Output number of fixtures scraped
-print(f"Scraped {len(fixtures)} fixtures")
-
-with open("fixtures.json", "w") as f:
+# Write to JSON
+with open("fixtures.json", "w", encoding="utf-8") as f:
     json.dump(fixtures, f, indent=2)
+
+print(f"✅ Extracted {len(fixtures)} fixtures")
