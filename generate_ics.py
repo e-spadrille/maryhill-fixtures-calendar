@@ -1,38 +1,27 @@
-from datetime import datetime, timedelta
 import json
+from datetime import datetime
+from icalendar import Calendar, Event
 
-def create_ics(fixtures):
-    lines = [
-        "BEGIN:VCALENDAR",
-        "VERSION:2.0",
-        "CALSCALE:GREGORIAN",
-        "PRODID:-//Maryhill Fixtures//EN"
-    ]
+with open("fixtures.json", "r") as f:
+    fixtures = json.load(f)
 
-    for f in fixtures:
-        dt = datetime.fromisoformat(f["datetime"])
-        dt_end = dt + timedelta(hours=2)
+cal = Calendar()
+cal.add("prodid", "-//Maryhill Fixtures//EN")
+cal.add("version", "2.0")
 
-        lines += [
-            "BEGIN:VEVENT",
-            f"DTSTART;TZID=Europe/London:{dt.strftime('%Y%m%dT%H%M%S')}",
-            f"DTEND;TZID=Europe/London:{dt_end.strftime('%Y%m%dT%H%M%S')}",
-            f"SUMMARY:{f['home']} vs {f['away']}",
-            f"LOCATION:{f['location']}",
-            f"DESCRIPTION:{f['competition']}",
-            "END:VEVENT"
-        ]
+for fixture in fixtures:
+    event = Event()
 
-    lines.append("END:VCALENDAR")
-    return "\n".join(lines)
+    start_str = fixture["date"] + " " + fixture["time"]
+    start_dt = datetime.strptime(start_str, "%d/%m/%y %H:%M")
 
-if __name__ == "__main__":
-    from scrape_fixtures import fetch_fixtures
+    event.add("summary", f'{fixture["home"]} vs {fixture["away"]}')
+    event.add("dtstart", start_dt)
+    event.add("dtend", start_dt)  # Can be modified to add 2 hours if desired
+    event.add("location", fixture["venue"])
+    event.add("description", fixture["competition"])
 
-    fixtures = fetch_fixtures()
-    with open("maryhill-fixtures.ics", "w") as f:
-        f.write(create_ics(fixtures))
+    cal.add_component(event)
 
-    # Optional: save a readable copy of the fixtures for debugging
-    with open("fixtures.json", "w") as f:
-        json.dump(fixtures, f, indent=2)
+with open("maryhill-fixtures.ics", "wb") as f:
+    f.write(cal.to_ical())
