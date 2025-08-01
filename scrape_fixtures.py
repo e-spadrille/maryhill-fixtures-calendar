@@ -1,57 +1,56 @@
-import requests
+from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
-import json
 from datetime import datetime
+import json
 
-# URLs to scrape
 urls = [
     "https://www.wosfl.co.uk/matchHub/922046009/-1_-1/853461137/-1/-1/-1/1/true.html",
     "https://www.wosfl.co.uk/matchHub/922046009/-1_-1/853461137/-1/-1/-1/1/true/2.html"
 ]
 
-headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-}
-
 fixtures = []
 
-for url in urls:
-    response = requests.get(url, headers=headers)
-    with open(f"page_{urls.index(url)+1}.html", "w", encoding="utf-8") as f:
-        f.write(response.text)
-    soup = BeautifulSoup(response.text, "html.parser")
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    context = browser.new_context()
+    page = context.new_page()
 
-    rows = soup.select("table.table.table-striped tbody tr")
+    for url in urls:
+        page.goto(url)
+        page.wait_for_selector("table.table")  # wait for the table to load
+        soup = BeautifulSoup(page.content(), "html.parser")
 
-    for row in rows:
-        cells = row.find_all("td")
-        if len(cells) < 6:
-            continue
+        rows = soup.select("table.table tbody tr")
 
-        # Extract fields
-        date_text = cells[0].get_text(strip=True)
-        time_text = cells[1].get_text(strip=True)
-        home_team = cells[2].get_text(strip=True)
-        away_team = cells[4].get_text(strip=True)
-        venue = cells[5].get_text(strip=True)
-        competition = cells[6].get_text(strip=True) if len(cells) > 6 else ""
+        for row in rows:
+            cells = row.find_all("td")
+            if len(cells) < 6:
+                continue
 
-        # Merge date & time
-        try:
-            dt = datetime.strptime(f"{date_text} {time_text}", "%a %d %b %Y %H:%M")
-            iso_time = dt.isoformat()
-        except ValueError:
-            continue  # skip malformed rows
+            date_text = cells[0].get_text(strip=True)
+            time_text = cells[1].get_text(strip=True)
+            home_team = cells[2].get_text(strip=True)
+            away_team = cells[4].get_text(strip=True)
+            venue = cells[5].get_text(strip=True)
+            competition = cells[6].get_text(strip=True) if len(cells) > 6 else ""
 
-        fixtures.append({
-            "home_team": home_team,
-            "away_team": away_team,
-            "datetime": iso_time,
-            "competition": competition,
-            "ground": venue
-        })
+            try:
+                dt = datetime.strptime(f"{date_text} {time_text}", "%a %d %b %Y %H:%M")
+                iso_time = dt.isoformat()
+            except ValueError:
+                continue
 
-# Write to JSON
+            fixtures.append({
+                "home_team": home_team,
+                "away_team": away_team,
+                "datetime": iso_time,
+                "competition": competition,
+                "ground": venue
+            })
+
+    browser.close()
+
+# Write fixtures to JSON
 with open("fixtures.json", "w", encoding="utf-8") as f:
     json.dump(fixtures, f, indent=2)
 
