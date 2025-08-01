@@ -29,10 +29,11 @@ jobs:
 
       - name: Upload HTML for debugging (optional)
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: debug-html
           path: debug.html
+   
 
       - name: Generate ICS calendar
         run: python generate_ics.py
