@@ -49,3 +49,10 @@ jobs:
           git add fixtures.json maryhill-fixtures.ics
           git commit -m "Auto-update calendar" || echo "No changes to commit"
           git push
+      - name: Upload HTML for debugging
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-html
+          path: |
+            page_1.html
+            page_2.html
