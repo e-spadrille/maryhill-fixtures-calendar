@@ -9,53 +9,44 @@ urls = [
     "https://www.wosfl.co.uk/matchHub/922046009/-1_-1/853461137/-1/-1/-1/1/true/2.html"
 ]
 
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+}
+
 fixtures = []
 
 for url in urls:
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
 
-    match_rows = soup.select(".match-row")
+    rows = soup.select("table.table.table-striped tbody tr")
 
-    for row in match_rows:
-        teams = row.select_one(".match-teams")
-        date_time = row.select_one(".match-date")
-        venue = row.select_one(".match-venue")
-
-        if not (teams and date_time and venue):
+    for row in rows:
+        cells = row.find_all("td")
+        if len(cells) < 6:
             continue
 
-        # Extract text cleanly
-        teams_text = teams.get_text(strip=True)
-        date_time_text = date_time.get_text(strip=True)
-        venue_text = venue.get_text(strip=True)
+        # Extract fields
+        date_text = cells[0].get_text(strip=True)
+        time_text = cells[1].get_text(strip=True)
+        home_team = cells[2].get_text(strip=True)
+        away_team = cells[4].get_text(strip=True)
+        venue = cells[5].get_text(strip=True)
+        competition = cells[6].get_text(strip=True) if len(cells) > 6 else ""
 
-        # Extract team names
-        if "v" in teams_text:
-            home_team, away_team = map(str.strip, teams_text.split("v"))
-        else:
-            continue  # skip malformed
-
-        # Parse date/time
+        # Merge date & time
         try:
-            dt = datetime.strptime(date_time_text, "%d %b %Y, %H:%M")
+            dt = datetime.strptime(f"{date_text} {time_text}", "%a %d %b %Y %H:%M")
             iso_time = dt.isoformat()
         except ValueError:
-            continue
-
-        # Extract competition and ground
-        if "@" in venue_text:
-            competition, ground = map(str.strip, venue_text.split("@", 1))
-        else:
-            competition = venue_text.strip()
-            ground = ""
+            continue  # skip malformed rows
 
         fixtures.append({
             "home_team": home_team,
             "away_team": away_team,
             "datetime": iso_time,
             "competition": competition,
-            "ground": ground
+            "ground": venue
         })
 
 # Write to JSON
