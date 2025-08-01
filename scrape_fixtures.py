@@ -18,7 +18,7 @@ fixtures = []
 for url in urls:
     response = requests.get(url, headers=headers)
     with open(f"page_{urls.index(url)+1}.html", "w", encoding="utf-8") as f:
-    f.write(response.text)
+        f.write(response.text)
     soup = BeautifulSoup(response.text, "html.parser")
 
     rows = soup.select("table.table.table-striped tbody tr")
