@@ -19,6 +19,10 @@ for page in PAGES:
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
 
+    # Save page contents to help debug
+    with open("debug.html", "w") as f:
+        f.write(response.text)
+
     rows = soup.select("div.matchHub__row")
 
     for row in rows:
@@ -46,6 +50,9 @@ for page in PAGES:
             })
         except Exception as e:
             print("Skipping row due to error:", e)
+
+# Output number of fixtures scraped
+print(f"Scraped {len(fixtures)} fixtures")
 
 with open("fixtures.json", "w") as f:
     json.dump(fixtures, f, indent=2)
