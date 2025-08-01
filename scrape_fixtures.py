@@ -1,56 +1,51 @@
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
+import json
 
+BASE_URL = "https://www.wosfl.co.uk"
 PAGES = [
-    "https://www.wosfl.co.uk/matchHub/922046009/-1_-1/853461137/-1/-1/-1/1/true.html",
-    "https://www.wosfl.co.uk/matchHub/922046009/-1_-1/853461137/-1/-1/-1/1/true/2.html"
+    "/matchHub/922046009/-1_-1/853461137/-1/-1/-1/1/true.html",
+    "/matchHub/922046009/-1_-1/853461137/-1/-1/-1/1/true/2.html",
 ]
 
-def fetch_fixtures():
-    fixtures = []
+fixtures = []
 
-    for url in PAGES:
-        res = requests.get(url)
-        soup = BeautifulSoup(res.text, "html.parser")
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+}
 
-        rows = soup.select("table tbody tr")
+for page in PAGES:
+    url = BASE_URL + page
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.text, "html.parser")
 
-        for row in rows:
-            cells = row.find_all("td")
-            if len(cells) < 5:
-                continue
+    rows = soup.select("div.matchHub__row")
 
-            datetime_str = cells[0].get_text(strip=True)
-            teams_html = cells[1]
-            comp_venue_text = cells[4].get_text(strip=True)
+    for row in rows:
+        try:
+            date_time = row.select_one(".matchHub__datetime").get_text(strip=True).split()
+            date = date_time[0]
+            time = date_time[1] if len(date_time) > 1 else "14:00"
 
-            try:
-                date_part, time_part = datetime_str.split()
-                dt = datetime.strptime(f"{date_part} {time_part}", "%d/%m/%y %H:%M")
-            except ValueError:
-                continue
-
-            teams = teams_html.get_text(" ", strip=True).split(" vs ")
+            teams = row.select(".matchHub__teamTitle")
             if len(teams) != 2:
                 continue
+            home = teams[0].get_text(strip=True)
+            away = teams[1].get_text(strip=True)
 
-            home, away = teams
-            if "Maryhill" not in (home + away):
-                continue
-
-            if "@" in comp_venue_text:
-                competition, location = comp_venue_text.split("@", 1)
-            else:
-                competition = comp_venue_text
-                location = ""
+            competition = row.select_one(".matchHub__gameInfo").get_text(strip=True)
+            venue = row.select_one(".matchHub__gameInfo + div").get_text(strip=True).replace("@", "").strip()
 
             fixtures.append({
-                "datetime": dt.isoformat(),
-                "home": home.strip(),
-                "away": away.strip(),
-                "competition": competition.strip(),
-                "location": location.strip()
+                "date": date,
+                "time": time,
+                "home": home,
+                "away": away,
+                "competition": competition,
+                "venue": venue
             })
+        except Exception as e:
+            print("Skipping row due to error:", e)
 
-    return fixtures
+with open("fixtures.json", "w") as f:
+    json.dump(fixtures, f, indent=2)
