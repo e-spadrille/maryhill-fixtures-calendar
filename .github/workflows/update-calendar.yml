@@ -21,4 +21,30 @@ jobs:
       - name: Install dependencies
         run: pip install beautifulsoup4 requests icalendar
 
-      - name: Run f
+      - name: Run fixture scraper
+        run: python scrape_fixtures.py
+
+      - name: Show scraped data
+        run: cat fixtures.json
+
+      - name: Upload HTML for debugging (optional)
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: debug-html
+          path: debug.html
+
+      - name: Generate ICS calendar
+        run: python generate_ics.py
+
+      - name: Authenticate with GitHub
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
+      - name: Commit updated calendar
+        run: |
+          git add fixtures.json maryhill-fixtures.ics
+          git commit -m "Auto-update calendar" || echo "No changes to commit"
+          git push
