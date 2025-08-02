@@ -16,8 +16,10 @@ with sync_playwright() as p:
     page = context.new_page()
 
     for url in urls:
-        page.goto(url)
-        page.wait_for_selector("table.table")  # wait for the table to load
+        page.goto(url, wait_until="networkidle")
+        page.wait_for_timeout(5000)  # wait 5 seconds
+        with open(f"debug_page_{urls.index(url)+1}.html", "w", encoding="utf-8") as f:
+            f.write(page.content())
         soup = BeautifulSoup(page.content(), "html.parser")
 
         rows = soup.select("table.table tbody tr")
