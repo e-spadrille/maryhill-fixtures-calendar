@@ -1,27 +1,42 @@
 import json
-from datetime import datetime
-from icalendar import Calendar, Event
+from ics import Calendar, Event
+from datetime import datetime, timedelta
+import pytz
 
-with open("fixtures.json", "r") as f:
+uk_tz = pytz.timezone("Europe/London")
+
+with open("fixtures.json", "r", encoding="utf-8") as f:
     fixtures = json.load(f)
 
 cal = Calendar()
-cal.add("prodid", "-//Maryhill Fixtures//EN")
-cal.add("version", "2.0")
 
 for fixture in fixtures:
-    event = Event()
+    try:
+        dt = datetime.fromisoformat(fixture["datetime"])
+        dt = uk_tz.localize(dt)
 
-    start_str = fixture["date"] + " " + fixture["time"]
-    start_dt = datetime.strptime(start_str, "%d/%m/%y %H:%M")
+        event = Event()
+        event.name = f"{fixture['home_team']} vs {fixture['away_team']}"
+        event.begin = dt
+        event.end = dt + timedelta(minutes=105)
 
-    event.add("summary", f'{fixture["home"]} vs {fixture["away"]}')
-    event.add("dtstart", start_dt)
-    event.add("dtend", start_dt)
-    event.add("location", fixture["venue"])
-    event.add("description", fixture["competition"])
+        # Description includes competition and result (if present)
+        description_lines = [f"{fixture['competition']}"]
+        if fixture.get("result"):
+            description_lines.append(f"Result: {fixture['result']}")
+        event.description = "\n".join(description_lines)
 
-    cal.add_component(event)
+        # Location is the ground (if present)
+        if fixture.get("ground"):
+            event.location = fixture["ground"]
 
-with open("maryhill-fixtures.ics", "wb") as f:
-    f.write(cal.to_ical())
+        cal.events.add(event)
+
+    except Exception as e:
+        print(f"⚠️ Skipping event due to error: {e}")
+        continue
+
+with open("maryhill-fixtures.ics", "w", encoding="utf-8") as f:
+    f.writelines(cal)
+
+print(f"✅ Generated maryhill-fixtures.ics with {len(cal.events)} events")
