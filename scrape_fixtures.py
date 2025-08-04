@@ -83,7 +83,7 @@ with sync_playwright() as p:
 
     browser.close()
 
-with open("fixtures.json", "w", encoding="utf-8") as f:
+with open("maryhill-fixtures-calendar/fixtures.json", "w", encoding="utf-8") as f:
     json.dump(fixtures, f, indent=2)
 
 print(f"✅ Extracted {len(fixtures)} fixtures")
