@@ -57,6 +57,14 @@
   },
   {
     "home_team": "Maryhill",
+    "away_team": "Abbey Vale",
+    "datetime": "2025-09-13T14:00:00",
+    "competition": "South Region Challenge Cup\n\t\t\t\t\t\t\t\t\t\t\t\t- Round 2",
+    "ground": "Lochburn Park",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
     "away_team": "Pollok",
     "datetime": "2025-09-20T14:30:00",
     "competition": "Scottish Communities Cup\n\t\t\t\t\t\t\t\t\t\t\t\t- Round 2",
