@@ -113,6 +113,14 @@
   },
   {
     "home_team": "Maryhill",
+    "away_team": "Blantyre Victoria",
+    "datetime": "2025-11-15T13:30:00",
+    "competition": "Second Division",
+    "ground": "Lochburn Park",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
     "away_team": "Maybole Juniors",
     "datetime": "2025-11-29T13:30:00",
     "competition": "Second Division",
