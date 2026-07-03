@@ -4,8 +4,8 @@ import json
 from datetime import datetime
 
 urls = [
-    "https://www.wosfl.co.uk/matchHub/922046009/-1_-1/853461137/-1/-1/-1/0/true.html",
-    "https://www.wosfl.co.uk/matchHub/922046009/-1_-1/853461137/-1/-1/-1/0/true/2.html"
+    "https://www.wosfl.co.uk/matchHub/236635540/-1_-1/853461137/-1/-1/-1/1/true/.html",
+    "https://www.wosfl.co.uk/matchHub/236635540/-1_-1/853461137/-1/-1/-1/1/true/2.html"
 ]
 
 fixtures = []
