@@ -1,274 +1,242 @@
 [
   {
-    "home_team": "Thorn Athletic",
-    "away_team": "Maryhill",
-    "datetime": "2025-07-26T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "1 - 1"
+    "home_team": "Maryhill",
+    "away_team": "Bonnyton Thistle",
+    "datetime": "2026-07-25T14:00:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
   },
   {
-    "home_team": "Bellshill Athletic",
+    "home_team": "Petershill",
     "away_team": "Maryhill",
-    "datetime": "2025-08-02T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "3 - 1"
-  },
-  {
-    "home_team": "Ashfield",
-    "away_team": "Maryhill",
-    "datetime": "2025-08-09T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "0 - 8"
+    "datetime": "2026-07-29T19:45:00",
+    "competition": "First Division",
+    "ground": "Petershill Park",
+    "result": null
   },
   {
     "home_team": "Maryhill",
-    "away_team": "Caledonian Locomotive",
-    "datetime": "2025-08-16T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "6 - 0"
-  },
-  {
-    "home_team": "Kilsyth Rangers",
-    "away_team": "Maryhill",
-    "datetime": "2025-08-23T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "1 - 3"
-  },
-  {
-    "home_team": "Maryhill",
-    "away_team": "Greenock Juniors",
-    "datetime": "2025-08-30T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "1 - 5"
-  },
-  {
-    "home_team": "Maryhill",
-    "away_team": "Larkhall Thistle",
-    "datetime": "2025-09-06T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "5 - 3"
-  },
-  {
-    "home_team": "Maryhill",
-    "away_team": "Abbey Vale",
-    "datetime": "2025-09-13T14:00:00",
-    "competition": "Finest Carmats South Region Challenge Cup\n\t\t\t\t\t\t\t\t\t\t\t\t- Round 2",
-    "ground": "",
-    "result": "7 - 1"
-  },
-  {
-    "home_team": "Maryhill",
-    "away_team": "Pollok",
-    "datetime": "2025-09-20T14:30:00",
-    "competition": "3 Pillars Financial Planning Scottish Communities Cup\n\t\t\t\t\t\t\t\t\t\t\t\t- Round 2",
-    "ground": "",
-    "result": "1 - 2"
-  },
-  {
-    "home_team": "Cumbernauld United",
-    "away_team": "Maryhill",
-    "datetime": "2025-10-04T14:00:00",
-    "competition": "Strathclyde Demolition West Of Scotland League Cup\n\t\t\t\t\t\t\t\t\t\t\t\t- Round 2",
-    "ground": "",
-    "result": "5 - 2"
-  },
-  {
-    "home_team": "Beith Juniors",
-    "away_team": "Maryhill",
-    "datetime": "2025-10-11T14:00:00",
-    "competition": "Finest Carmats South Region Challenge Cup\n\t\t\t\t\t\t\t\t\t\t\t\t- Round 3",
-    "ground": "",
-    "result": "1 - 1(Pens 6-5)"
-  },
-  {
-    "home_team": "Maryhill",
-    "away_team": "Threave Rovers",
-    "datetime": "2025-10-25T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "1 - 4"
-  },
-  {
-    "home_team": "Bonnyton Thistle",
-    "away_team": "Maryhill",
-    "datetime": "2025-11-15T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "2 - 4"
-  },
-  {
-    "home_team": "Kilsyth Athletic",
-    "away_team": "Maryhill",
-    "datetime": "2025-11-22T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "2 - 3"
-  },
-  {
-    "home_team": "Maryhill",
-    "away_team": "Maybole Juniors",
-    "datetime": "2025-11-29T13:30:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "3 - 0"
-  },
-  {
-    "home_team": "Maryhill",
-    "away_team": "Thorn Athletic",
-    "datetime": "2026-01-17T13:30:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "4 - 4"
+    "away_team": "Lanark United",
+    "datetime": "2026-08-01T14:00:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
   },
   {
     "home_team": "Threave Rovers",
     "away_team": "Maryhill",
-    "datetime": "2026-01-24T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "2 - 2"
+    "datetime": "2026-08-08T14:00:00",
+    "competition": "First Division",
+    "ground": "Meadow Park",
+    "result": null
   },
   {
     "home_team": "Maryhill",
     "away_team": "Bellshill Athletic",
-    "datetime": "2026-01-31T13:30:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "3 - 1"
-  },
-  {
-    "home_team": "Caledonian Locomotive",
-    "away_team": "Maryhill",
-    "datetime": "2026-02-07T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "1 - 3"
-  },
-  {
-    "home_team": "Greenock Juniors",
-    "away_team": "Maryhill",
-    "datetime": "2026-02-21T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "1 - 1"
-  },
-  {
-    "home_team": "Maryhill",
-    "away_team": "Kilsyth Rangers",
-    "datetime": "2026-02-28T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "1 - 1"
-  },
-  {
-    "home_team": "Larkhall Thistle",
-    "away_team": "Maryhill",
-    "datetime": "2026-03-07T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "3 - 0"
-  },
-  {
-    "home_team": "Blantyre Victoria",
-    "away_team": "Maryhill",
-    "datetime": "2026-03-21T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "2 - 1"
-  },
-  {
-    "home_team": "Maryhill",
-    "away_team": "Lesmahagow Juniors",
-    "datetime": "2026-03-28T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "0 - 3"
-  },
-  {
-    "home_team": "Cambuslang Rangers",
-    "away_team": "Maryhill",
-    "datetime": "2026-04-04T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "0 - 1"
-  },
-  {
-    "home_team": "Maryhill",
-    "away_team": "Kilsyth Athletic",
-    "datetime": "2026-04-11T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "4 - 3"
-  },
-  {
-    "home_team": "Maybole Juniors",
-    "away_team": "Maryhill",
-    "datetime": "2026-04-18T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "4 - 1"
-  },
-  {
-    "home_team": "Maryhill",
-    "away_team": "Blantyre Victoria",
-    "datetime": "2026-04-25T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "0 - 2"
+    "datetime": "2026-08-15T14:00:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
   },
   {
     "home_team": "Lesmahagow Juniors",
     "away_team": "Maryhill",
-    "datetime": "2026-04-29T19:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "0 - 3"
+    "datetime": "2026-08-29T14:00:00",
+    "competition": "First Division",
+    "ground": "Craighead Park",
+    "result": null
+  },
+  {
+    "home_team": "Blantyre Victoria",
+    "away_team": "Maryhill",
+    "datetime": "2026-09-26T14:00:00",
+    "competition": "First Division",
+    "ground": "KG Stadium",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
+    "away_team": "Neilston",
+    "datetime": "2026-10-10T14:00:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
+    "away_team": "Maybole Juniors",
+    "datetime": "2026-10-17T14:00:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
+    "away_team": "Whitletts Victoria",
+    "datetime": "2026-10-24T14:00:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
+  },
+  {
+    "home_team": "Thorniewood United",
+    "away_team": "Maryhill",
+    "datetime": "2026-10-31T14:00:00",
+    "competition": "First Division",
+    "ground": "Robertson Park",
+    "result": null
   },
   {
     "home_team": "Maryhill",
     "away_team": "Cambuslang Rangers",
-    "datetime": "2026-05-02T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "2 - 2"
+    "datetime": "2026-11-14T13:30:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
   },
   {
-    "home_team": "Maryhill",
-    "away_team": "Bonnyton Thistle",
-    "datetime": "2026-05-06T19:30:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "2 - 3"
-  },
-  {
-    "home_team": "Maryhill",
-    "away_team": "Forth Wanderers",
-    "datetime": "2026-05-09T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "6 - 0"
-  },
-  {
-    "home_team": "Maryhill",
-    "away_team": "Ashfield",
-    "datetime": "2026-05-12T19:30:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "2 - 1"
-  },
-  {
-    "home_team": "Forth Wanderers",
+    "home_team": "Thorn Athletic",
     "away_team": "Maryhill",
-    "datetime": "2026-05-16T14:00:00",
-    "competition": "Second Division",
-    "ground": "",
-    "result": "0 - 5"
+    "datetime": "2026-11-28T13:30:00",
+    "competition": "First Division",
+    "ground": "Thorn Park",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
+    "away_team": "Kilsyth Rangers",
+    "datetime": "2026-12-19T13:30:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
+  },
+  {
+    "home_team": "Gartcairn",
+    "away_team": "Maryhill",
+    "datetime": "2027-01-09T14:00:00",
+    "competition": "First Division",
+    "ground": "MTC Park",
+    "result": null
+  },
+  {
+    "home_team": "Bonnyton Thistle",
+    "away_team": "Maryhill",
+    "datetime": "2027-01-16T14:00:00",
+    "competition": "First Division",
+    "ground": "Synergy Stadium",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
+    "away_team": "Petershill",
+    "datetime": "2027-01-23T13:30:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
+  },
+  {
+    "home_team": "Lanark United",
+    "away_team": "Maryhill",
+    "datetime": "2027-01-30T13:30:00",
+    "competition": "First Division",
+    "ground": "Moor Park",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
+    "away_team": "Threave Rovers",
+    "datetime": "2027-02-13T14:00:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
+  },
+  {
+    "home_team": "Bellshill Athletic",
+    "away_team": "Maryhill",
+    "datetime": "2027-02-20T14:00:00",
+    "competition": "First Division",
+    "ground": "Rockburn Park",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
+    "away_team": "Lesmahagow Juniors",
+    "datetime": "2027-02-27T14:00:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
+  },
+  {
+    "home_team": "Maybole Juniors",
+    "away_team": "Maryhill",
+    "datetime": "2027-03-06T14:00:00",
+    "competition": "First Division",
+    "ground": "Ladywell Stadium",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
+    "away_team": "Blantyre Victoria",
+    "datetime": "2027-03-13T14:00:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
+  },
+  {
+    "home_team": "Neilston",
+    "away_team": "Maryhill",
+    "datetime": "2027-03-20T14:00:00",
+    "competition": "First Division",
+    "ground": "Brig O'Lea",
+    "result": null
+  },
+  {
+    "home_team": "Whitletts Victoria",
+    "away_team": "Maryhill",
+    "datetime": "2027-03-27T14:00:00",
+    "competition": "First Division",
+    "ground": "New Voluntary Park",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
+    "away_team": "Thorniewood United",
+    "datetime": "2027-04-03T14:00:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
+  },
+  {
+    "home_team": "Cambuslang Rangers",
+    "away_team": "Maryhill",
+    "datetime": "2027-04-10T14:00:00",
+    "competition": "First Division",
+    "ground": "Somervell Park",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
+    "away_team": "Thorn Athletic",
+    "datetime": "2027-04-17T14:00:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
+  },
+  {
+    "home_team": "Kilsyth Rangers",
+    "away_team": "Maryhill",
+    "datetime": "2027-05-01T14:00:00",
+    "competition": "First Division",
+    "ground": "Duncansfield Park",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
+    "away_team": "Gartcairn",
+    "datetime": "2027-05-15T14:00:00",
+    "competition": "First Division",
+    "ground": "Lochburn Park",
+    "result": null
   }
 ]
