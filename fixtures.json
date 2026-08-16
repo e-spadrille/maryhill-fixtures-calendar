@@ -1,13 +1,5 @@
 [
   {
-    "home_team": "Maryhill",
-    "away_team": "Bellshill Athletic",
-    "datetime": "2026-08-15T14:00:00",
-    "competition": "First Division",
-    "ground": "Lochburn Park",
-    "result": null
-  },
-  {
     "home_team": "Cruden Bay",
     "away_team": "Maryhill",
     "datetime": "2026-08-22T14:30:00",
@@ -21,6 +13,14 @@
     "datetime": "2026-08-29T14:00:00",
     "competition": "First Division",
     "ground": "Craighead Park",
+    "result": null
+  },
+  {
+    "home_team": "Maryhill",
+    "away_team": "Irvine Meadow XI",
+    "datetime": "2026-09-05T14:00:00",
+    "competition": "South Region Challenge Cup\n\t\t\t\t\t\t\t\t\t\t\t\t- Round 2",
+    "ground": "Lochburn Park",
     "result": null
   },
   {
